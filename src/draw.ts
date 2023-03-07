@@ -1,10 +1,10 @@
 import type p5 from "p5";
-
+import { capture } from "./setup";
 
 export let image: p5.Image;
 
 export const preload = (p: p5): void => {
-  image = p.loadImage("pose_pien.png");
+  // image = p.loadImage("pose_pien.png");
 }
 
 // const density = 'Ñ@#W$9876543210?!abc;:+=-,._ ';
@@ -13,8 +13,11 @@ const density = "ÆMWØæ@¶ÐQÑBÔÖÕGÓNÒRODÊËÉÈ&ES$H¾ÇmÛ§Ü8ÃÂK�
 /** This is a draw function. */
 
 export const draw = (p: p5): void => {
-  p.background(125);
-  image.resize(60, 0);
+  p.background(0);
+
+  // get image from video frame
+  image = capture.get();
+  image.resize(100, 0);
   let w = p.width / image.width;
   let h = p.height / image.height;
   image.loadPixels();
